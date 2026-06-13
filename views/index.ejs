@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <header class="app-header">
+            <h1 class="logo-text">Instagram</h1>
+            <div class="header-right">
+                <i class="ri-heart-line"></i>
+                <i class="ri-messenger-line"></i>
+            </div>
+        </header>
+
+        <main class="scroll-content">
+            
+            <div class="stories-container">
+                <div class="story-item">
+                    <div class="story-avatar-ring live">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150" alt="Your Story">
+                    </div>
+                    <span>Your Story</span>
+                </div>
+                <div class="story-item">
+                    <div class="story-avatar-ring">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150" alt="alex_ux">
+                    </div>
+                    <span>alex_ux</span>
+                </div>
+                <div class="story-item">
+                    <div class="story-avatar-ring">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150" alt="sara.p">
+                    </div>
+                    <span>sara.p</span>
+                </div>
+            </div>
+
+            <div class="feed-timeline">
+                <% if(typeof posts !== 'undefined' && posts.length > 0) { %>
+                    <% posts.forEach(function(post) { %>
+                        <div class="insta-post-card">
+                            
+                            <div class="post-card-header">
+                                <div class="post-owner-meta">
+                                    <img src="<%= post.user && post.user.dp ? post.user.dp : 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150' %>" alt="avatar">
+                                    <span class="post-username"><%= post.user ? post.user.username : 'sans_codes' %></span>
+                                </div>
+                                <i class="ri-more-fill"></i>
+                            </div>
+
+                            <div class="post-card-media" dblclick="submitLikeForm('<%= post._id %>')">
+                                <img src="<%= post.image %>" alt="Feed content">
+                            </div>
+
+                            <div class="post-card-actions">
+                                <div class="actions-left-group">
+                                    <form action="/like/<%= post._id %>" method="POST" id="like-form-<%= post._id %>" style="display: inline;">
+                                        <button type="submit" class="icon-action-btn">
+                                            <i class="<%= post.likes && post.likes.length > 0 ? 'ri-heart-fill heart-active' : 'ri-heart-line' %>"></i>
+                                        </button>
+                                    </form>
+                                    <i class="ri-chat-3-line"></i>
+                                    <i class="ri-send-plane-line"></i>
+                                </div>
+                                <i class="ri-bookmark-line"></i>
+                            </div>
+
+                            <div class="post-card-details">
+                                <span class="likes-metric"><%= post.likes ? post.likes.length : 0 %> likes</span>
+                                <p class="post-caption-text">
+                                    <span class="bold-username"><%= post.user ? post.user.username : 'sans_codes' %></span> <%= post.caption %>
+                                </p>
+                                
+                                <div class="embedded-comments-tray">
+                                    <% if(post.comments && post.comments.length > 0) { %>
+                                        <% post.comments.forEach(function(comment) { %>
+                                            <p class="comment-line">
+                                                <span class="bold-username"><%= comment.user ? comment.user.username : 'user' %></span> <%= comment.text %>
+                                            </p>
+                                        <% }) %>
+                                    <% } %>
+                                </div>
+                                <span class="timestamp-label">JUST NOW</span>
+                            </div>
+
+                            <form action="/comment/<%= post._id %>" method="POST" class="post-inline-comment-form">
+                                <input type="text" name="commentText" placeholder="Add a comment..." required>
+                                <button type="submit" class="comment-submit-action">Post</button>
+                            </form>
+                        </div>
+                    <% }) %>
+                <% } else { %>
+                    <div class="empty-feed-placeholder">
+                        <i class="ri-camera-line"></i>
+                        <p>No Posts on your Feed Timeline</p>
+                        <span>Tap the + icon below to publish your first update.</span>
+                    </div>
+                <% } %>
+            </div>
+        </main>
+
+        <footer class="app-bottom-nav">
+            <i class="ri-home-5-fill"></i>
+            <i class="ri-search-2-line"></i>
+            <i class="ri-add-box-line create-trigger-btn" onclick="toggleUploadModal(true)"></i>
+            <i class="ri-clapperboard-line"></i>
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150" class="nav-user-avatar" alt="profile">
+        </footer>
+
+        <div class="upload-popup-modal-overlay" id="uploadModal">
+            <div class="upload-popup-modal-sheet">
+                <div class="modal-sheet-header">
+                    <span class="modal-cancel" onclick="toggleUploadModal(false)">Cancel</span>
+                    <span class="modal-title">New Post</span>
+                    <button type="submit" form="createPostForm" class="modal-share-btn">Share</button>
+                </div>
+                <form action="/create-post" method="POST" id="createPostForm" class="modal-sheet-form-body">
+                    <div class="form-input-group">
+                        <label for="imgUrlInput">Image URL Resource Location</label>
+                        <input type="text" id="imgUrlInput" name="image" placeholder="https://images.unsplash.com/..." required>
+                    </div>
+                    <div class="form-input-group">
+                        <label for="captionInput">Write an engaging status caption...</label>
+                        <textarea id="captionInput" name="caption" rows="4" placeholder="Write a caption..."></textarea>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleUploadModal(show) {
+            const modal = document.getElementById('uploadModal');
+            modal.style.display = show ? 'flex' : 'none';
+        }
+    </script>
+</body>
+</html>

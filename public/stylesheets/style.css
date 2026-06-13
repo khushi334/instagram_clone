@@ -1,0 +1,404 @@
+/* Instagram Core Framework UI Variables Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #121212; /* Dark ambient room mood to let your mock app pop */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* App Canvas Wrapper: Simulates a crisp mobile view container screen layout */
+.app-container {
+    width: 100%;
+    max-width: 420px; /* Locked down to authentic iPhone/Android dimensions */
+    height: 92vh;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    border: 4px solid #2c2c2c;
+}
+
+/* Header Action Ribbon Layout rules */
+.app-header {
+    height: 54px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #f2f2f2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    flex-shrink: 0;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #000000;
+}
+
+.header-right {
+    display: flex;
+    gap: 18px;
+    font-size: 22px;
+    color: #000000;
+    cursor: pointer;
+}
+
+/* Scrollable Core View Port container bounds */
+.scroll-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    background-color: #ffffff;
+    padding-bottom: 20px;
+}
+
+.scroll-content::-webkit-scrollbar {
+    display: none; /* Keeps app experience completely clean and modern */
+}
+
+/* Stories Horizon Stream List Items */
+.stories-container {
+    display: flex;
+    gap: 14px;
+    padding: 12px 14px;
+    border-bottom: 1px solid #f2f2f2;
+    overflow-x: auto;
+}
+
+.stories-container::-webkit-scrollbar {
+    display: none;
+}
+
+.story-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.story-avatar-ring {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    padding: 2.5px;
+    border: 2px solid #dbdbdb; /* Default read state circle ring boundary */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Live Instagram Pink Gradient Active Circle Accent Ring */
+.story-avatar-ring.live {
+    border: 2.5px solid transparent;
+    background: linear-gradient(45deg, #f99f1b, #dd2a7b, #8134af, #515bd4) border-box;
+}
+
+.story-avatar-ring img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ffffff;
+}
+
+.story-item span {
+    font-size: 11px;
+    color: #262626;
+    margin-top: 5px;
+    max-width: 64px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Elegant Stream Post UI Design Blocks */
+.insta-post-card {
+    background-color: #ffffff;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.post-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+}
+
+.post-owner-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.post-owner-meta img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.post-username {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #262626;
+}
+
+.post-card-media {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Forces crisp default clean 1:1 Instagram Box ratio */
+    background-color: #f9f9f9;
+}
+
+.post-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Action Icons Ribbon Area controls */
+.post-card-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 14px 6px 14px;
+    font-size: 22px;
+    color: #000000;
+}
+
+.actions-left-group {
+    display: flex;
+    gap: 16px;
+}
+
+.icon-action-btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: inherit;
+}
+
+.heart-active {
+    color: #ed4956;
+}
+
+/* Engagement Card Typography Parameters */
+.post-card-details {
+    padding: 0 14px;
+}
+
+.likes-metric {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #262626;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.post-caption-text {
+    font-size: 13.5px;
+    line-height: 18px;
+    color: #262626;
+}
+
+.bold-username {
+    font-weight: 700;
+    margin-right: 4px;
+}
+
+.embedded-comments-tray {
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.comment-line {
+    font-size: 13px;
+    color: #262626;
+}
+
+.timestamp-label {
+    font-size: 10px;
+    color: #8e8e8e;
+    display: block;
+    margin-top: 6px;
+    letter-spacing: 0.2px;
+}
+
+/* Card Bottom Comment Box Row Layout */
+.post-inline-comment-form {
+    border-top: 1px solid #f2f2f2;
+    padding: 10px 14px;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.post-inline-comment-form input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    font-size: 13px;
+}
+
+.comment-submit-action {
+    border: none;
+    background: transparent;
+    color: #0095f6;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+/* Sticky App Navigation Utility Layout Ribbon footer bar */
+.app-bottom-nav {
+    height: 52px;
+    background-color: #ffffff;
+    border-top: 1px solid #f2f2f2;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 22px;
+    color: #000000;
+    flex-shrink: 0;
+}
+
+.app-bottom-nav i {
+    cursor: pointer;
+}
+
+.nav-user-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #dbdbdb;
+}
+
+/* Hidden Upload popup panel Modal sheet presentation layer styling overlay config */
+.upload-popup-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 500;
+    display: none; /* Handles switching toggled actions dynamically */
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.upload-popup-modal-sheet {
+    width: 100%;
+    background-color: #ffffff;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    padding: 16px;
+    animation: slideUp 0.25s ease-out;
+}
+
+.modal-sheet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #f2f2f2;
+    margin-bottom: 16px;
+}
+
+.modal-cancel {
+    font-size: 14px;
+    color: #262626;
+    cursor: pointer;
+}
+
+.modal-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.modal-share-btn {
+    border: none;
+    background: transparent;
+    color: #0095f6;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.modal-sheet-form-body {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.form-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-input-group label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #8e8e8e;
+}
+
+.form-input-group input, 
+.form-input-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #dbdbdb;
+    border-radius: 6px;
+    font-size: 13.5px;
+    outline: none;
+    background-color: #fafafa;
+}
+
+/* CSS Sliding animations */
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+/* Empty Presenter state styling rules */
+.empty-feed-placeholder {
+    padding: 60px 30px;
+    text-align: center;
+}
+
+.empty-feed-placeholder i {
+    font-size: 44px;
+    color: #8e8e8e;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.empty-feed-placeholder p {
+    font-size: 15px;
+    font-weight: 600;
+    color: #262626;
+}
+
+.empty-feed-placeholder span {
+    font-size: 12.5px;
+    color: #8e8e8e;
+    display: block;
+    margin-top: 4px;
+    line-height: 16px;
+}
